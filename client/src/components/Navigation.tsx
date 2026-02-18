@@ -44,11 +44,11 @@ export function Navigation() {
   };
 
   const menuItems = [
-    { href: "/", label: "Home", icon: Home },
-    { href: "/movies", label: "Movies", icon: Film },
-    { href: "/games", label: "Games", icon: Gamepad2 },
-    { href: "/pk-battles", label: "PK Battles", icon: Swords },
-    { href: "/events", label: "Events", icon: Calendar },
+    { href: "/", label: "Ana Sayfa", icon: Home },
+    { href: "/movies", label: "Filmler", icon: Film },
+    { href: "/games", label: "Oyunlar", icon: Gamepad2 },
+    { href: "/pk-battles", label: "PK Savaşları", icon: Swords },
+    { href: "/events", label: "Etkinlikler", icon: Calendar },
     ...(customPages?.filter(p => p.isVisible).map(p => ({ 
       href: `/page/${p.slug}`, 
       label: p.title, 
@@ -94,7 +94,7 @@ export function Navigation() {
                     className="flex items-center gap-3 px-4 py-3 rounded-md text-secondary hover:bg-secondary/10 transition-colors mt-4 border border-secondary/20"
                   >
                     <ShieldCheck className="h-5 w-5" />
-                    Admin Dashboard
+                    Yönetici Paneli
                   </Link>
                 )}
               </div>
@@ -151,19 +151,19 @@ export function Navigation() {
                   <Link href="/admin">
                     <DropdownMenuItem className="cursor-pointer text-secondary focus:text-secondary">
                       <ShieldCheck className="mr-2 h-4 w-4" />
-                      <span>Admin Panel</span>
+                      <span>Yönetici Paneli</span>
                     </DropdownMenuItem>
                   </Link>
                 )}
                 <DropdownMenuItem className="cursor-pointer" onClick={() => logout()}>
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
+                  <span>Çıkış Yap</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <Link href="/login">
-              <Button>Login</Button>
+              <Button>Giriş Yap</Button>
             </Link>
           )}
         </div>

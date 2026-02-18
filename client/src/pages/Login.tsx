@@ -33,24 +33,24 @@ export default function Login() {
             <div className="mx-auto bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
               <ShieldCheck className="h-6 w-6 text-primary" />
             </div>
-            <CardTitle className="text-2xl font-display font-bold">Welcome Back</CardTitle>
-            <CardDescription>Enter your credentials to access the realm</CardDescription>
+            <CardTitle className="text-2xl font-display font-bold">Tekrar Hoş Geldiniz</CardTitle>
+            <CardDescription>Sisteme erişmek için bilgilerinizi girin</CardDescription>
           </CardHeader>
           <form onSubmit={handleSubmit}>
             <CardContent className="space-y-4 pt-4">
               <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="username">Kullanıcı Adı</Label>
                 <Input 
                   id="username" 
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Enter your username" 
+                  placeholder="Kullanıcı adınızı girin" 
                   required
                   className="h-11"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Şifre</Label>
                 <Input 
                   id="password" 
                   type="password" 
@@ -71,14 +71,14 @@ export default function Login() {
                 {isLoggingIn ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Authenticating...
+                    Giriş yapılıyor...
                   </>
                 ) : (
-                  "Sign In"
+                  "Giriş Yap"
                 )}
               </Button>
               <p className="text-xs text-center text-muted-foreground">
-                Don't have an account? Contact an administrator.
+                Hesabınız yok mu? Bir yönetici ile iletişime geçin.
               </p>
             </CardFooter>
           </form>

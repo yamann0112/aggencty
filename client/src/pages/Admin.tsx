@@ -30,15 +30,15 @@ export default function Admin() {
           <Shield className="h-8 w-8" />
         </div>
         <div>
-          <h1 className="text-3xl font-display font-bold">Admin Dashboard</h1>
-          <p className="text-muted-foreground">Manage your kingdom's subjects and decrees</p>
+          <h1 className="text-3xl font-display font-bold">Yönetici Paneli</h1>
+          <p className="text-muted-foreground">Topluluğunuzun üyelerini ve duyurularını yönetin</p>
         </div>
       </div>
 
       <Tabs defaultValue="users" className="space-y-6">
         <TabsList className="bg-muted/50 p-1 border">
-          <TabsTrigger value="users" className="gap-2"><Users className="h-4 w-4" /> Users & Roles</TabsTrigger>
-          <TabsTrigger value="announcements" className="gap-2"><Megaphone className="h-4 w-4" /> Announcements</TabsTrigger>
+          <TabsTrigger value="users" className="gap-2"><Users className="h-4 w-4" /> Kullanıcılar & Roller</TabsTrigger>
+          <TabsTrigger value="announcements" className="gap-2"><Megaphone className="h-4 w-4" /> Duyurular</TabsTrigger>
         </TabsList>
 
         <TabsContent value="users">
@@ -63,8 +63,8 @@ function UserManagement() {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
-          <CardTitle>User Directory</CardTitle>
-          <CardDescription>Manage user roles, tags, and special statuses</CardDescription>
+          <CardTitle>Kullanıcı Rehberi</CardTitle>
+          <CardDescription>Kullanıcı rollerini, etiketlerini ve özel durumlarını yönetin</CardDescription>
         </div>
         <CreateUserDialog />
       </CardHeader>
@@ -72,11 +72,11 @@ function UserManagement() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>User</TableHead>
-              <TableHead>Role</TableHead>
-              <TableHead>Tag</TableHead>
-              <TableHead>Employee of Month</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+              <TableHead>Kullanıcı</TableHead>
+              <TableHead>Rol</TableHead>
+              <TableHead>Etiket</TableHead>
+              <TableHead>Ayın Elemanı</TableHead>
+              <TableHead className="text-right">İşlemler</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -110,7 +110,7 @@ function UserManagement() {
                 <TableCell className="text-right flex items-center justify-end gap-2">
                   <EditUserDialog user={u} />
                   <Button variant="ghost" size="icon" onClick={() => {
-                    if (confirm("Are you sure? This cannot be undone.")) {
+                    if (confirm("Emin misiniz? Bu işlem geri alınamaz.")) {
                       deleteUser.mutate(u.id);
                     }
                   }}>
@@ -139,31 +139,31 @@ function CreateUserDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="gap-2"><Plus className="h-4 w-4" /> Add User</Button>
+        <Button className="gap-2"><Plus className="h-4 w-4" /> Kullanıcı Ekle</Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader><DialogTitle>Create New User</DialogTitle></DialogHeader>
+        <DialogHeader><DialogTitle>Yeni Kullanıcı Oluştur</DialogTitle></DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label>Username</Label>
+            <Label>Kullanıcı Adı</Label>
             <Input value={formData.username} onChange={e => setFormData({...formData, username: e.target.value})} required />
           </div>
           <div className="space-y-2">
-            <Label>Password</Label>
+            <Label>Şifre</Label>
             <Input type="password" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} required />
           </div>
           <div className="space-y-2">
-            <Label>Role</Label>
+            <Label>Rol</Label>
             <Select value={formData.role} onValueChange={(v: any) => setFormData({...formData, role: v})}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="user">User</SelectItem>
-                <SelectItem value="moderator">Moderator</SelectItem>
-                <SelectItem value="admin">Admin</SelectItem>
+                <SelectItem value="user">Kullanıcı</SelectItem>
+                <SelectItem value="moderator">Moderatör</SelectItem>
+                <SelectItem value="admin">Yönetici</SelectItem>
               </SelectContent>
             </Select>
           </div>
-          <Button type="submit" className="w-full" disabled={createUser.isPending}>Create User</Button>
+          <Button type="submit" className="w-full" disabled={createUser.isPending}>Kullanıcı Oluştur</Button>
         </form>
       </DialogContent>
     </Dialog>
@@ -192,41 +192,41 @@ function EditUserDialog({ user }: { user: any }) {
         <Button variant="ghost" size="icon"><Edit className="h-4 w-4" /></Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader><DialogTitle>Edit User: {user.username}</DialogTitle></DialogHeader>
+        <DialogHeader><DialogTitle>Kullanıcıyı Düzenle: {user.username}</DialogTitle></DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label>Display Name (Animated)</Label>
+            <Label>Görünen Ad (Animasyonlu)</Label>
             <Input value={formData.displayName} onChange={e => setFormData({...formData, displayName: e.target.value})} />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label>Role</Label>
+              <Label>Rol</Label>
               <Select value={formData.role} onValueChange={(v: any) => setFormData({...formData, role: v})}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="user">User</SelectItem>
-                  <SelectItem value="moderator">Moderator</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
+                  <SelectItem value="user">Kullanıcı</SelectItem>
+                  <SelectItem value="moderator">Moderatör</SelectItem>
+                  <SelectItem value="admin">Yönetici</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
-              <Label>Tag (e.g. VIP)</Label>
+              <Label>Etiket (örn. VIP)</Label>
               <Input value={formData.tag} onChange={e => setFormData({...formData, tag: e.target.value})} />
             </div>
           </div>
           <div className="space-y-2">
-            <Label>Tag Color (Hex or Tailwind class)</Label>
+            <Label>Etiket Rengi (Hex veya Tailwind sınıfı)</Label>
             <Input value={formData.tagColor} onChange={e => setFormData({...formData, tagColor: e.target.value})} placeholder="#FF0000" />
           </div>
           <div className="flex items-center justify-between p-3 border rounded-lg">
-            <Label>Employee of the Month</Label>
+            <Label>Ayın Elemanı</Label>
             <Switch 
               checked={formData.isEmployeeOfMonth}
               onCheckedChange={c => setFormData({...formData, isEmployeeOfMonth: c})}
             />
           </div>
-          <Button type="submit" className="w-full" disabled={updateUser.isPending}>Save Changes</Button>
+          <Button type="submit" className="w-full" disabled={updateUser.isPending}>Değişiklikleri Kaydet</Button>
         </form>
       </DialogContent>
     </Dialog>
@@ -247,32 +247,32 @@ function AnnouncementManagement() {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Create Announcement</CardTitle>
-          <CardDescription>This will appear in the scrolling marquee at the top</CardDescription>
+          <CardTitle>Duyuru Oluştur</CardTitle>
+          <CardDescription>Bu, üst kısımdaki kayan bantta görünecektir</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handlePublish} className="flex gap-4">
             <Input 
               value={content} 
               onChange={e => setContent(e.target.value)} 
-              placeholder="Enter announcement text..." 
+              placeholder="Duyuru metnini girin..." 
               required
             />
-            <Button type="submit" disabled={createAnnouncement.isPending}>Publish</Button>
+            <Button type="submit" disabled={createAnnouncement.isPending}>Yayınla</Button>
           </form>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader>
-          <CardTitle>History</CardTitle>
+          <CardTitle>Geçmiş</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {announcements?.map((a) => (
               <div key={a.id} className="p-4 border rounded-lg flex justify-between items-center">
                 <p className={a.active ? "font-bold text-primary" : "text-muted-foreground"}>{a.content}</p>
-                <Badge variant={a.active ? "default" : "outline"}>{a.active ? "Active" : "Archived"}</Badge>
+                <Badge variant={a.active ? "default" : "outline"}>{a.active ? "Aktif" : "Arşivlendi"}</Badge>
               </div>
             ))}
           </div>

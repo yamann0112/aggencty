@@ -86,7 +86,7 @@ export function ChatWidget() {
           <SheetHeader className="p-4 border-b bg-muted/30">
             <SheetTitle className="flex items-center gap-2 font-display text-primary">
               <MessageSquare className="h-5 w-5" />
-              Global Chat
+              Genel Sohbet
             </SheetTitle>
           </SheetHeader>
 
@@ -94,7 +94,7 @@ export function ChatWidget() {
             <div className="space-y-4">
               {messages?.length === 0 && (
                 <div className="text-center text-muted-foreground py-10">
-                  No messages yet. Say hello!
+                  Henüz mesaj yok. Merhaba de!
                 </div>
               )}
               
@@ -114,7 +114,7 @@ export function ChatWidget() {
                     {replyToMsg && (
                       <div className={`text-xs text-muted-foreground flex items-center gap-1 mb-0.5 px-2 ${msg.userId === user.id ? "mr-10" : "ml-10"}`}>
                         <Reply className="h-3 w-3" />
-                        Replying to <span className="font-semibold">{replyAuthor?.username || "Deleted"}</span>
+                        Yanıtlıyor: <span className="font-semibold">{replyAuthor?.username || "Silinmiş"}</span>
                       </div>
                     )}
 
@@ -198,7 +198,7 @@ export function ChatWidget() {
               <Input 
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="Type a message..." 
+                placeholder="Bir mesaj yazın..." 
                 className="flex-1 rounded-full focus-visible:ring-primary"
                 disabled={createMessage.isPending}
               />

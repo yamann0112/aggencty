@@ -28,8 +28,8 @@ export default function PkBattles() {
     <div className="container py-12">
       <div className="flex justify-between items-center mb-10">
         <div>
-          <h1 className="text-4xl font-display font-bold text-secondary mb-2">PK Battle Arena</h1>
-          <p className="text-muted-foreground">Join a room and prove your might</p>
+          <h1 className="text-4xl font-display font-bold text-secondary mb-2">PK Savaş Arenası</h1>
+          <p className="text-muted-foreground">Bir odaya katılın ve gücünüzü kanıtlayın</p>
         </div>
         {user?.role === "admin" && <CreateBattleDialog />}
       </div>
@@ -41,8 +41,8 @@ export default function PkBattles() {
         {battles?.length === 0 && (
           <div className="col-span-full text-center py-20 bg-muted/20 rounded-xl border border-dashed">
             <Swords className="h-12 w-12 mx-auto text-muted-foreground mb-4 opacity-50" />
-            <h3 className="text-xl font-semibold mb-2">No Active Battles</h3>
-            <p className="text-muted-foreground">The arena is quiet... for now.</p>
+            <h3 className="text-xl font-semibold mb-2">Aktif Savaş Yok</h3>
+            <p className="text-muted-foreground">Arena sessiz... şimdilik.</p>
           </div>
         )}
       </div>
@@ -55,7 +55,7 @@ function BattleCard({ battle }: { battle: any }) {
 
   const copyRoomId = () => {
     navigator.clipboard.writeText(battle.roomId);
-    toast({ title: "Copied!", description: "Room ID copied to clipboard" });
+    toast({ title: "Kopyalandı!", description: "Oda ID panoya kopyalandı" });
   };
 
   return (
@@ -97,7 +97,7 @@ function BattleCard({ battle }: { battle: any }) {
       
       <CardFooter>
         <Button className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold">
-          Join Battle
+          Savaşa Katıl
         </Button>
       </CardFooter>
     </Card>
@@ -125,16 +125,16 @@ function CreateBattleDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="gap-2">
-          <Plus className="h-4 w-4" /> Create Battle
+          <Plus className="h-4 w-4" /> Savaş Oluştur
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Host New Battle</DialogTitle>
+          <DialogTitle>Yeni Savaş Başlat</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 pt-4">
           <div className="space-y-2">
-            <Label>Battle Title</Label>
+            <Label>Savaş Başlığı</Label>
             <Input 
               value={formData.title}
               onChange={e => setFormData({...formData, title: e.target.value})}
@@ -142,7 +142,7 @@ function CreateBattleDialog() {
             />
           </div>
           <div className="space-y-2">
-            <Label>Image URL (Optional)</Label>
+            <Label>Resim URL (Opsiyonel)</Label>
             <Input 
               value={formData.imageUrl}
               onChange={e => setFormData({...formData, imageUrl: e.target.value})}
@@ -151,7 +151,7 @@ function CreateBattleDialog() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label>Room ID</Label>
+              <Label>Oda ID</Label>
               <Input 
                 value={formData.roomId}
                 readOnly
@@ -159,7 +159,7 @@ function CreateBattleDialog() {
               />
             </div>
             <div className="space-y-2">
-              <Label>Max Players</Label>
+              <Label>Maksimum Oyuncu</Label>
               <Input 
                 type="number"
                 min={2}
@@ -170,7 +170,7 @@ function CreateBattleDialog() {
             </div>
           </div>
           <Button type="submit" className="w-full" disabled={createBattle.isPending}>
-            {createBattle.isPending ? "Creating..." : "Create Battle Room"}
+            {createBattle.isPending ? "Oluşturuluyor..." : "Savaş Odası Oluştur"}
           </Button>
         </form>
       </DialogContent>

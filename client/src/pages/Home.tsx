@@ -7,30 +7,30 @@ import { motion } from "framer-motion";
 export default function Home() {
   const features = [
     { 
-      title: "PK Battles", 
+      title: "PK Savaşları", 
       icon: Swords, 
-      desc: "Join competitive rooms", 
+      desc: "Rekabetçi odalara katılın", 
       href: "/pk-battles",
       color: "bg-red-500" 
     },
     { 
-      title: "Movies", 
+      title: "Filmler", 
       icon: Film, 
-      desc: "Watch featured content", 
+      desc: "Öne çıkan içerikleri izleyin", 
       href: "/movies",
       color: "bg-blue-500" 
     },
     { 
-      title: "Games", 
+      title: "Oyunlar", 
       icon: Gamepad2, 
-      desc: "Play and compete", 
+      desc: "Oynayın ve yarışın", 
       href: "/games",
       color: "bg-green-500" 
     },
     { 
-      title: "Events", 
+      title: "Etkinlikler", 
       icon: Calendar, 
-      desc: "Upcoming community events", 
+      desc: "Gelecek topluluk etkinlikleri", 
       href: "/events",
       color: "bg-amber-500" 
     },
@@ -49,21 +49,21 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl md:text-7xl font-display font-bold tracking-tight mb-6">
-              Welcome to <span className="text-primary">Royal</span><span className="text-secondary">App</span>
+              <span className="text-primary">Royal</span><span className="text-secondary">App</span>'e Hoş Geldiniz
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-              The ultimate community platform for gaming, entertainment, and battles. 
-              Join the elite, compete for glory, and chat with friends.
+              Oyun, eğlence ve savaşlar için nihai topluluk platformu.
+              Seçkinlere katılın, zafer için yarışın ve arkadaşlarınızla sohbet edin.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/pk-battles">
                 <Button size="lg" className="rounded-full px-8 text-lg font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 transition-all">
-                  Start Battling
+                  Savaşa Başla
                 </Button>
               </Link>
               <Link href="/login">
                 <Button size="lg" variant="outline" className="rounded-full px-8 text-lg hover:bg-muted">
-                  Join Community
+                  Topluluğa Katıl
                 </Button>
               </Link>
             </div>

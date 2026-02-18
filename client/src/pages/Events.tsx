@@ -22,8 +22,8 @@ export default function Events() {
     <div className="container py-12">
       <div className="flex justify-between items-end mb-10 border-b pb-6">
         <div>
-          <h1 className="text-4xl font-display font-bold text-primary mb-2">Community Events</h1>
-          <p className="text-muted-foreground">Don't miss out on what's happening in the kingdom</p>
+          <h1 className="text-4xl font-display font-bold text-primary mb-2">Topluluk Etkinlikleri</h1>
+          <p className="text-muted-foreground">Krallıkta olup bitenleri kaçırmayın</p>
         </div>
         {user?.role === "admin" && <CreateEventDialog />}
       </div>
@@ -73,9 +73,9 @@ export default function Events() {
                     disabled={!user}
                   >
                     <Heart className={`h-5 w-5 ${event.likedBy?.includes(user?.id || 0) ? "fill-current" : ""}`} />
-                    {event.likes} Interested
+                    {event.likes} İlgilenen
                   </Button>
-                  <Button>RSVP Now</Button>
+                  <Button>Şimdi Katıl</Button>
                 </CardFooter>
               </div>
             </Card>
@@ -110,16 +110,16 @@ function CreateEventDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground">
-          <Plus className="h-4 w-4" /> Add Event
+          <Plus className="h-4 w-4" /> Etkinlik Ekle
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Schedule New Event</DialogTitle>
+          <DialogTitle>Yeni Etkinlik Planla</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 pt-4">
           <div className="space-y-2">
-            <Label>Event Title</Label>
+            <Label>Etkinlik Başlığı</Label>
             <Input 
               value={formData.title}
               onChange={e => setFormData({...formData, title: e.target.value})}
@@ -127,7 +127,7 @@ function CreateEventDialog() {
             />
           </div>
           <div className="space-y-2">
-            <Label>Date & Time</Label>
+            <Label>Tarih & Saat</Label>
             <Input 
               type="datetime-local"
               value={formData.date}
@@ -136,7 +136,7 @@ function CreateEventDialog() {
             />
           </div>
           <div className="space-y-2">
-            <Label>Image URL</Label>
+            <Label>Resim URL</Label>
             <Input 
               value={formData.imageUrl}
               onChange={e => setFormData({...formData, imageUrl: e.target.value})}
@@ -144,7 +144,7 @@ function CreateEventDialog() {
             />
           </div>
           <div className="space-y-2">
-            <Label>Description</Label>
+            <Label>Açıklama</Label>
             <Textarea 
               value={formData.description}
               onChange={e => setFormData({...formData, description: e.target.value})}
@@ -153,7 +153,7 @@ function CreateEventDialog() {
             />
           </div>
           <Button type="submit" className="w-full" disabled={createEvent.isPending}>
-            {createEvent.isPending ? "Creating..." : "Publish Event"}
+            {createEvent.isPending ? "Oluşturuluyor..." : "Etkinliği Yayınla"}
           </Button>
         </form>
       </DialogContent>

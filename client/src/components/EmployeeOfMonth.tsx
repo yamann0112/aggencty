@@ -18,8 +18,8 @@ export function EmployeeOfMonth() {
       
       <div className="container relative">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-display font-bold text-primary mb-2">Hall of Fame</h2>
-          <p className="text-muted-foreground">Recognizing our top community members</p>
+          <h2 className="text-3xl font-display font-bold text-primary mb-2">Onur Listesi</h2>
+          <p className="text-muted-foreground">En iyi topluluk üyelerimizi tanıyoruz</p>
         </div>
 
         <div className="flex flex-col md:flex-row items-end justify-center gap-8 md:gap-4 pb-8">
@@ -42,7 +42,7 @@ export function EmployeeOfMonth() {
               </motion.div>
               <div className="mt-5 text-center">
                 <p className="font-bold text-lg">{winners[1].displayName || winners[1].username}</p>
-                <p className="text-sm text-muted-foreground">Runner Up</p>
+                <p className="text-sm text-muted-foreground">İkinci</p>
               </div>
             </div>
           )}
@@ -68,7 +68,7 @@ export function EmployeeOfMonth() {
               </motion.div>
               <div className="mt-6 text-center">
                 <p className="font-bold text-xl text-primary">{winners[0].displayName || winners[0].username}</p>
-                <p className="text-sm font-medium text-secondary">Employee of the Month</p>
+                <p className="text-sm font-medium text-secondary">Ayın Elemanı</p>
               </div>
             </div>
           )}
@@ -92,7 +92,7 @@ export function EmployeeOfMonth() {
               </motion.div>
               <div className="mt-5 text-center">
                 <p className="font-bold text-lg">{winners[2].displayName || winners[2].username}</p>
-                <p className="text-sm text-muted-foreground">Rising Star</p>
+                <p className="text-sm text-muted-foreground">Yükselen Yıldız</p>
               </div>
             </div>
           )}
