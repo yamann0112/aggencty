@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
-import { usePages } from "@/hooks/use-data";
+import { usePages, useSetting } from "@/hooks/use-data";
 import { 
   Menu, X, Home, Film, Gamepad2, Swords, Calendar, 
   ShieldCheck, LogOut, Sun, Moon, User as UserIcon
@@ -22,8 +22,14 @@ export function Navigation() {
   const [location] = useLocation();
   const { user, logout } = useAuth();
   const { data: customPages } = usePages();
+  const { data: siteNameSetting } = useSetting("siteName");
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  const siteName = siteNameSetting?.value || "ROYAL APP";
+  const nameParts = siteName.split(" ");
+  const firstName = nameParts[0];
+  const restName = nameParts.slice(1).join(" ");
 
   useEffect(() => {
     // Check initial theme preference
@@ -69,7 +75,7 @@ export function Navigation() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-              <SheetTitle className="text-primary font-display mb-4">Navigation</SheetTitle>
+              <SheetTitle className="text-primary font-display mb-4">Navigasyon</SheetTitle>
               <div className="flex flex-col gap-4 py-4">
                 {menuItems.map((item) => (
                   <Link 
@@ -102,8 +108,8 @@ export function Navigation() {
           </Sheet>
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold bg-gradient-to-r from-primary via-yellow-500 to-primary bg-clip-text text-transparent ml-2 md:ml-0">
-            ROYAL<span className="text-secondary">APP</span>
+          <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold bg-gradient-to-r from-primary via-yellow-500 to-primary bg-clip-text text-transparent ml-2 md:ml-0 uppercase">
+            {firstName}<span className="text-secondary"> {restName}</span>
           </Link>
 
           {/* Desktop Nav */}

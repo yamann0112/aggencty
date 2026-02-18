@@ -228,7 +228,39 @@ export function useCreateAnnouncement() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [api.announcements.get.path] });
-      toast({ title: "Announcement published" });
+      toast({ title: "Duyuru yayınlandı" });
+    },
+  });
+}
+
+// --- SETTINGS ---
+export function useSetting(key: string) {
+  return useQuery<{ value: string }>({
+    queryKey: ["/api/settings", key],
+    queryFn: async () => {
+      const res = await fetch(`/api/settings/${key}`);
+      if (!res.ok) return { value: "" };
+      return await res.json();
+    },
+  });
+}
+
+export function useUpdateSetting() {
+  const queryClient = useQueryClient();
+  const { toast } = useToast();
+  return useMutation({
+    mutationFn: async ({ key, value }: { key: string; value: string }) => {
+      const res = await fetch("/api/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ key, value }),
+      });
+      if (!res.ok) throw new Error("Failed to update setting");
+      return await res.json();
+    },
+    onSuccess: (_, { key }) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/settings", key] });
+      toast({ title: "Ayar güncellendi" });
     },
   });
 }

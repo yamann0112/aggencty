@@ -166,6 +166,19 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
       res.status(201).json(announcement);
   });
 
+  // Settings
+  app.get(api.settings.get.path, async (req, res) => {
+    const value = await storage.getSetting(req.params.key);
+    if (value === undefined) return res.status(404).send();
+    res.json({ value });
+  });
+
+  app.post(api.settings.set.path, async (req, res) => {
+    if (!req.isAuthenticated() || req.user?.role !== "admin") return res.status(403).send();
+    const { key, value } = z.object({ key: z.string(), value: z.string() }).parse(req.body);
+    await storage.setSetting(key, value);
+    res.json({ key, value });
+  });
 
   return httpServer;
 }

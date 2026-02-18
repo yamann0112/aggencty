@@ -39,6 +39,7 @@ export default function Admin() {
         <TabsList className="bg-muted/50 p-1 border">
           <TabsTrigger value="users" className="gap-2"><Users className="h-4 w-4" /> Kullanıcılar & Roller</TabsTrigger>
           <TabsTrigger value="announcements" className="gap-2"><Megaphone className="h-4 w-4" /> Duyurular</TabsTrigger>
+          <TabsTrigger value="settings" className="gap-2"><Shield className="h-4 w-4" /> Site Ayarları</TabsTrigger>
         </TabsList>
 
         <TabsContent value="users">
@@ -48,8 +49,47 @@ export default function Admin() {
         <TabsContent value="announcements">
           <AnnouncementManagement />
         </TabsContent>
+
+        <TabsContent value="settings">
+          <SiteSettings />
+        </TabsContent>
       </Tabs>
     </div>
+  );
+}
+
+function SiteSettings() {
+  const { data: siteNameSetting } = useSetting("siteName");
+  const updateSetting = useUpdateSetting();
+  const [siteName, setSiteName] = useState(siteNameSetting?.value || "");
+
+  const handleSave = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateSetting.mutate({ key: "siteName", value: siteName });
+  };
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Site Ayarları</CardTitle>
+        <CardDescription>Uygulamanın genel ayarlarını buradan yönetebilirsiniz</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSave} className="space-y-4 max-w-md">
+          <div className="space-y-2">
+            <Label htmlFor="siteName">Site Adı (Örn: ROYAL APP)</Label>
+            <Input 
+              id="siteName"
+              value={siteName} 
+              onChange={e => setSiteName(e.target.value)} 
+              placeholder="ROYAL APP"
+            />
+            <p className="text-xs text-muted-foreground">İlk kelime altın rengi, geri kalanı kırmızı görünecektir.</p>
+          </div>
+          <Button type="submit" disabled={updateSetting.isPending}>Ayarları Kaydet</Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 }
 

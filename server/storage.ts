@@ -49,6 +49,10 @@ export interface IStorage {
   // Announcements
   getAnnouncements(): Promise<Announcement[]>;
   createAnnouncement(announcement: InsertAnnouncement): Promise<Announcement>;
+  
+  // Settings
+  getSetting(key: string): Promise<string | undefined>;
+  setSetting(key: string, value: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -169,6 +173,21 @@ export class DatabaseStorage implements IStorage {
   async createAnnouncement(insertAnnouncement: InsertAnnouncement): Promise<Announcement> {
     const [announcement] = await db.insert(announcements).values(insertAnnouncement).returning();
     return announcement;
+  }
+
+  // Settings
+  async getSetting(key: string): Promise<string | undefined> {
+    const [setting] = await db.select().from(settings).where(eq(settings.key, key));
+    return setting?.value;
+  }
+
+  async setSetting(key: string, value: string): Promise<void> {
+    const existing = await this.getSetting(key);
+    if (existing !== undefined) {
+      await db.update(settings).set({ value }).where(eq(settings.key, key));
+    } else {
+      await db.insert(settings).values({ key, value });
+    }
   }
 }
 

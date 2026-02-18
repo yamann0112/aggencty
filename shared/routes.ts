@@ -206,6 +206,24 @@ export const api = {
       },
     },
   },
+  settings: {
+    get: {
+      method: 'GET' as const,
+      path: '/api/settings/:key' as const,
+      responses: {
+        200: z.object({ value: z.string() }),
+        404: errorSchemas.notFound,
+      },
+    },
+    set: {
+      method: 'POST' as const,
+      path: '/api/settings' as const,
+      input: z.object({ key: z.string(), value: z.string() }),
+      responses: {
+        200: z.object({ key: z.string(), value: z.string() }),
+      },
+    },
+  },
 };
 
 export function buildUrl(path: string, params?: Record<string, string | number>): string {

@@ -61,6 +61,12 @@ export const announcements = pgTable("announcements", {
   active: boolean("active").default(true),
 });
 
+export const settings = pgTable("settings", {
+  id: serial("id").primaryKey(),
+  key: text("key").notNull().unique(),
+  value: text("value").notNull(),
+});
+
 // === RELATIONS ===
 
 export const messagesRelations = relations(messages, ({ one }) => ({
